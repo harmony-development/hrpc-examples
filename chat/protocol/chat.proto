@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package chat;
+
+// Empty object which is used in place of nothing
+message Empty {}
+
+// Object that represents a chat message
+message Message { string content = 1; }
+
+service Chat {
+  // Endpoint to send a chat message
+  rpc SendMessage(Message) returns (Empty);
+  // Endpoint to stream chat messages
+  rpc StreamMessages(Empty) returns (stream Message);
+}
