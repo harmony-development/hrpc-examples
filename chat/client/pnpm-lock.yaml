@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@harmony-dev/transport-hrpc': ^1.0.3
+  '@harmony-dev/transport-hrpc': ^1.0.4
   '@protobuf-ts/plugin': ^2.0.7
   '@protobuf-ts/protoc': ^2.0.7
   '@protobuf-ts/runtime': ^2.0.7
@@ -19,7 +19,7 @@ dependencies:
   vue: 3.2.21
 
 devDependencies:
-  '@harmony-dev/transport-hrpc': 1.0.3
+  '@harmony-dev/transport-hrpc': 1.0.4
   '@protobuf-ts/plugin': 2.0.7
   '@protobuf-ts/protoc': 2.0.7
   '@protobuf-ts/runtime-rpc': 2.0.7
@@ -72,8 +72,8 @@ packages:
     resolution: {integrity: sha512-8HqW8EVqjnCmWXVpqAOZf+EGESdkR27odcMMMGefgKXtar00SoYNSryGv//TELI4T3QFsECo78p+0lmalk/CFA==}
     dev: true
 
-  /@harmony-dev/transport-hrpc/1.0.3:
-    resolution: {integrity: sha512-/Ek4fNmDnDGwtbvhpJmuhThi5u5S0dNLlfUEUgnTfFOJtN54r+3fy66LUyZ4DLZ280SqKPqO5qOwa+FFXw511g==}
+  /@harmony-dev/transport-hrpc/1.0.4:
+    resolution: {integrity: sha512-IeQwlTi1FHm9B+jHFEIb0fZkfiWub8H2zO8dFKjMtcPABF2abS3/ALoKHUxytXwG1Tv/ZjBHR+71jZFSdml7pw==}
     dependencies:
       '@protobuf-ts/runtime': 2.0.7
       '@protobuf-ts/runtime-rpc': 2.0.7
@@ -917,8 +917,8 @@ packages:
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
     dev: true
 
-  /rollup/2.59.0:
-    resolution: {integrity: sha512-l7s90JQhCQ6JyZjKgo7Lq1dKh2RxatOM+Jr6a9F7WbS9WgKbocyUSeLmZl8evAse7y96Ae98L2k1cBOwWD8nHw==}
+  /rollup/2.60.0:
+    resolution: {integrity: sha512-cHdv9GWd58v58rdseC8e8XIaPUo8a9cgZpnCMMDGZFDZKEODOiPPEQFXLriWr/TjXzhPPmG5bkAztPsOARIcGQ==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
@@ -1023,7 +1023,7 @@ packages:
       esbuild: 0.13.13
       postcss: 8.3.11
       resolve: 1.20.0
-      rollup: 2.59.0
+      rollup: 2.60.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -1051,9 +1051,8 @@ packages:
       vscode-uri: 3.0.2
     dev: true
 
-  /vscode-json-languageservice/4.1.9:
-    resolution: {integrity: sha512-kxNHitUy2fCxmP6vAp0SRLrUSuecUYzzxlC+85cC3jJlFHWmvtCJOzikC+kcUnIdls9fQSB8n0yHs8Sl6taxJw==}
-    engines: {npm: '>=7.0.0'}
+  /vscode-json-languageservice/4.1.10:
+    resolution: {integrity: sha512-IHliMEEYSY0tJjJt0ECb8ESx/nRXpoy9kN42WVQXgaqGyizFAf3jibSiezDQTrrY7f3kywXggCU+kkJEM+OLZQ==}
     dependencies:
       jsonc-parser: 3.0.0
       vscode-languageserver-textdocument: 1.0.2
@@ -1143,7 +1142,7 @@ packages:
       upath: 2.0.1
       vscode-css-languageservice: 5.1.8
       vscode-html-languageservice: 4.1.1
-      vscode-json-languageservice: 4.1.9
+      vscode-json-languageservice: 4.1.10
       vscode-languageserver: 8.0.0-next.3
       vscode-languageserver-textdocument: 1.0.2
       vscode-pug-languageservice: 0.27.24
