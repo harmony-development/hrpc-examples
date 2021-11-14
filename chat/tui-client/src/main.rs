@@ -25,7 +25,7 @@ async fn main() -> Result<(), BoxError> {
     // Wait for messages and post them, in a seperate task
     tokio::spawn(async move {
         while let Ok(message) = socket.receive_message().await {
-            println!("got: {}", message.content);
+            println!("\ngot: {}", message.content);
         }
     });
 
