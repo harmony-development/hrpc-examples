@@ -1,5 +1,5 @@
 [package]
-name = "server"
+name = "tui-client"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,14 +8,15 @@ edition = "2021"
 [dependencies]
 # `prost` provides us with protobuf decoding and encoding
 prost = "0.9"
-# Enable hrpc's server features, and the recommended transport
-hrpc = { version = "0.29.0", features = ["server", "recommended"] }
+hrpc = { version = "0.29.0", features = ["client", "recommended"] }
 # Enable tokio's macros so we can mark our main function, and enable multi
 # threaded runtime
 # `tokio` is the async runtime we use
 tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros"] }
 tower-http = { version = "0.1", features = ["cors"] }
+# We will use rustyline to read messages from user on our client
+rustyline = "9"
 
 [build-dependencies]
 # The features we enable here matches the ones we enable for `hrpc`
-hrpc-build = { version = "0.29.0", features = ["server", "recommended"] }
+hrpc-build = { version = "0.29.0", features = ["client", "recommended"] }
