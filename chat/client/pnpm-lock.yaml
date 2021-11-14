@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@harmony-dev/transport-hrpc': ^1.0.4
+  '@harmony-dev/transport-hrpc': ^1.0.7
   '@protobuf-ts/plugin': ^2.0.7
   '@protobuf-ts/protoc': ^2.0.7
   '@protobuf-ts/runtime': ^2.0.7
@@ -19,7 +19,7 @@ dependencies:
   vue: 3.2.21
 
 devDependencies:
-  '@harmony-dev/transport-hrpc': 1.0.4
+  '@harmony-dev/transport-hrpc': 1.0.7
   '@protobuf-ts/plugin': 2.0.7
   '@protobuf-ts/protoc': 2.0.7
   '@protobuf-ts/runtime-rpc': 2.0.7
@@ -72,8 +72,8 @@ packages:
     resolution: {integrity: sha512-8HqW8EVqjnCmWXVpqAOZf+EGESdkR27odcMMMGefgKXtar00SoYNSryGv//TELI4T3QFsECo78p+0lmalk/CFA==}
     dev: true
 
-  /@harmony-dev/transport-hrpc/1.0.4:
-    resolution: {integrity: sha512-IeQwlTi1FHm9B+jHFEIb0fZkfiWub8H2zO8dFKjMtcPABF2abS3/ALoKHUxytXwG1Tv/ZjBHR+71jZFSdml7pw==}
+  /@harmony-dev/transport-hrpc/1.0.7:
+    resolution: {integrity: sha512-r6u4Y8FlUdYVrxMMuMibQRFcYGxfesqXahRFZ55nO+QUzXuHxQsG95gL7SSZdyTZ0BaAJy2GfGUBN1/DmgxmGQ==}
     dependencies:
       '@protobuf-ts/runtime': 2.0.7
       '@protobuf-ts/runtime-rpc': 2.0.7

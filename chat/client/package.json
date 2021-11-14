@@ -11,7 +11,7 @@
     "vue": "^3.2.21"
   },
   "devDependencies": {
-    "@harmony-dev/transport-hrpc": "^1.0.4",
+    "@harmony-dev/transport-hrpc": "^1.0.7",
     "@protobuf-ts/plugin": "^2.0.7",
     "@protobuf-ts/protoc": "^2.0.7",
     "@protobuf-ts/runtime-rpc": "^2.0.7",
