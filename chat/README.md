@@ -3,7 +3,7 @@
 A chat application example. 
 
 You will need the [Rust toolchain installed](https://rustup.rs) to run the server.
-If you want to run the web client, you will need `pnpm`.
+If you want to run the web client, you will need [`pnpm`](https://pnpm.io).
 
 To run the server, navigate to `server` and run:
 ```console
