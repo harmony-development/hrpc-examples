@@ -11,52 +11,28 @@ public static class Program
 {
     private static HttpClient _client = new();
     private static string _server = "http://localhost:2289";
-    private static ClientWebSocket _socket = new();
 
     public static async Task Main(string[] args)
     {
-        await _socket.ConnectAsync(new Uri(_server.Replace("http", "ws") + "/chat.Chat/StreamMessages"), default);
+        var client = new StreamClient<Message>();
 
-        // send initial Empty message
-        await _socket.SendAsync(Proto.Marshal(new Chat.Empty()).AsMemory(), WebSocketMessageType.Binary, true, default);
+        await client.Connect(_server.Replace("http", "ws") + "/chat.Chat/StreamMessages", new Chat.Empty());
 
-        while (_socket.State == WebSocketState.Open)
+        while (client.State == WebSocketState.Open)
         {
-            using var stream = new MemoryStream();
-            using var buf = MemoryPool<byte>.Shared.Rent();
-            var msg = await _socket.ReceiveAsync(buf.Memory, default);
-            stream.Write(buf.Memory.Span.Slice(0, msg.Count));
-            while (!msg.EndOfMessage)
-            {
-                msg = await _socket.ReceiveAsync(buf.Memory, default);
-                stream.Write(buf.Memory.Span.Slice(0, msg.Count));
-            }
-
-            if (msg.MessageType == WebSocketMessageType.Close)
-            {
-                Console.WriteLine($"Got close message with status {_socket.CloseStatus}, exiting...");
-                return;
-            }
-
-            _ = HandleMessageReceived(stream.GetBuffer());
+            var message = await client.Read();
+            _ = HandleMessageReceived(message);
         }
+
+        Console.WriteLine($"Stream client closed with status {client.CloseStatus}, exiting...");
     }
 
-    public static async Task HandleMessageReceived(byte[] message)
+    public static async Task HandleMessageReceived(Message message)
     {
         try
         {
-            // h
-            int endIndex = message.Length - 1;
-            while (endIndex >= 0 && message[endIndex] == 0)
-                endIndex--;
-
-            byte[] result = new byte[endIndex + 1];
-            Array.Copy(message, 0, result, 0, endIndex + 1);
-
-            var parsed = Proto.Unmarshal<Message>(result);
-            Console.WriteLine($"Message received: {parsed.Content}");
-            if (parsed.Content == "!ping")
+            Console.WriteLine($"Message received: {message.Content}");
+            if (message.Content == "!ping")
                 await SendMessage("Pong!");
         }
         catch (Exception e)
@@ -67,16 +43,8 @@ public static class Program
 
     public static async Task SendMessage(string message)
     {
-        var messageReq = new Message()
-        {
-            Content = message
-        };
+        var messageReq = new Message() { Content = message };
 
-        var content = new ByteArrayContent(Proto.Marshal(messageReq));
-        content.Headers.Add("Content-Type", "application/hrpc");
-
-        var httpRes = await _client.PostAsync("http://localhost:2289/chat.Chat/SendMessage", content);
-
-        var res = Proto.Unmarshal<Chat.Empty>(await httpRes.Content.ReadAsByteArrayAsync(), (int)httpRes.StatusCode);
+        var res = await _client.HrpcUnaryAsync<Message, Empty>(_server + "/chat.Chat/SendMessage", messageReq);
     }
 }
