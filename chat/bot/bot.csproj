@@ -17,8 +17,4 @@
     <ProjectReference Include="..\..\..\hrpc.net\hrpc.net.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Protobuf Include="../protocol/chat.proto" GrpcServices="Client" Link="Protos/chat.proto" />
-  </ItemGroup>
-
 </Project>

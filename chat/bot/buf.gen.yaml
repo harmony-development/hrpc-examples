@@ -1,0 +1,8 @@
+version: v1
+plugins:
+  - name: csharp
+    out: gen
+  - name: hrpc
+    out: gen
+    opt:
+      - csharp_client

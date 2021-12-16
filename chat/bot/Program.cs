@@ -1,30 +1,25 @@
-﻿using System.Buffers;
-using System.Linq;
-using System.Net.WebSockets;
+﻿using System.Net.WebSockets;
 using Chat;
 
-using Hrpc;
+using Generated;
 
 namespace bot;
 
 public static class Program
 {
-    private static HttpClient _client = new();
-    private static string _server = "http://localhost:2289";
+    public static ChatClient client = new("http://localhost:2289");
 
     public static async Task Main(string[] args)
     {
-        var client = new StreamClient<Message>();
+        var stream = await client.StreamMessages(new Empty());
 
-        await client.Connect(_server.Replace("http", "ws") + "/chat.Chat/StreamMessages", new Chat.Empty());
-
-        while (client.State == WebSocketState.Open)
+        while (stream.State == WebSocketState.Open)
         {
-            var message = await client.Read();
+            var message = await stream.Read();
             _ = HandleMessageReceived(message);
         }
 
-        Console.WriteLine($"Stream client closed with status {client.CloseStatus}, exiting...");
+        Console.WriteLine($"Stream client closed with status {stream.CloseStatus}, exiting...");
     }
 
     public static async Task HandleMessageReceived(Message message)
@@ -33,18 +28,11 @@ public static class Program
         {
             Console.WriteLine($"Message received: {message.Content}");
             if (message.Content == "!ping")
-                await SendMessage("Pong!");
+                await client.SendMessage(new Message() { Content = "Pong!" });
         }
         catch (Exception e)
         {
             Console.WriteLine($"Error in handle message received: {e}");
         }
-    }
-
-    public static async Task SendMessage(string message)
-    {
-        var messageReq = new Message() { Content = message };
-
-        var res = await _client.HrpcUnaryAsync<Message, Empty>(_server + "/chat.Chat/SendMessage", messageReq);
     }
 }
